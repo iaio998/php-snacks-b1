@@ -21,13 +21,18 @@ $arrayTeam = [
     ]
 ];
 
-// SNACK 
+// SNACK 2
 if (isset($_GET["name"]) && isset($_GET["email"]) && isset($_GET["age"])) {
     $name = $_GET["name"];
     $email = $_GET["email"];
     $age = $_GET["age"];
 }
 ;
+
+// SNACK 3
+$text = $_POST["text"];
+$textXplode = explode(".", $text);
+$arrLen = count($textXplode);
 ?>
 
 <!DOCTYPE html>
@@ -81,6 +86,16 @@ if (isset($_GET["name"]) && isset($_GET["email"]) && isset($_GET["age"])) {
                 echo "<div>Accesso negato</div>" ?>
             <?php }
         } ?>
+        <!-- SNACK 3 -->
+        <h1 class="py-3">SNACK 3: PARAGRAPH EXPLOSION</h1>
+        <form action="index.php" method="POST">
+            <textarea name="text" id="text" cols="50" rows="10" placeholder="Write..."></textarea>
+            <button type="submit">Invia</button>
+        </form>
+        <?php foreach ($textXplode as $value) {
+            echo "<p>{$value}</p>";
+        } ?>
+
     </main>
 
 
