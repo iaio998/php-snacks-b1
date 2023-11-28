@@ -1,4 +1,5 @@
 <?php
+// SNACK 1
 $arrayTeam = [
     [
         'teamHome' => 'L.A. Clippers',
@@ -18,8 +19,16 @@ $arrayTeam = [
         'scoreHome' => 103,
         'scoreAway' => 104
     ]
-]
-    ?>
+];
+
+// SNACK 
+if (isset($_GET["name"]) && isset($_GET["email"]) && isset($_GET["age"])) {
+    $name = $_GET["name"];
+    $email = $_GET["email"];
+    $age = $_GET["age"];
+}
+;
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -44,19 +53,34 @@ $arrayTeam = [
 <body>
 
     <main>
-        <h1>SNACK 1: BASKETBALL TEAMS</h1>
+        <!-- SNACK 1 -->
+        <h1 class="py-3">SNACK 1: BASKETBALL TEAMS</h1>
         <ul>
             <?php
             foreach ($arrayTeam as $key => $value) {
-                echo "<li>{$value['teamHome']} - {$value['teamAway']} | {$value['scoreHome']}-{$value['scoreAway']}</li>"
+                echo "<li>{$value['teamHome']} - {$value['teamAway']} | <span class='fw-bold'>{$value['scoreHome']}-{$value['scoreAway']}</span></li>"
                     ?>
             <?php } ?>
         </ul>
-        <!-- <form action="info.php" class="p-5">
-            <textarea rows="4" cols="50" name="testo" placeholder="Inserisci un testo..."></textarea>
-            <input type="text" name="parola" placeholder="Scrivi...">
-            <button type="submit">Invia</button>
-        </form> -->
+
+        <!-- SNACK 2 -->
+        <h1 class="py-3">SNACK 2: LOGIN</h1>
+        <?php if (empty($name) && empty($email) && empty($age)) {
+            echo "<form action='index.php 'method='GET' class='p-3'>
+            <input type='text' name='name' placeholder='Name...'>
+            <input type='text' name='email' placeholder='Email...'>
+            <input type='number' name='age' placeholder='Age...'>
+            <button type='submit'>Invia</button>
+        </form>" ?>
+        <?php } else { ?>
+            <?php
+            if (strlen($name) >= 3 && strpos($email, '.') && strpos($email, '@') && is_numeric($age)) {
+                echo "<div>Accesso riuscito</div>"
+                    ?>
+            <?php } else {
+                echo "<div>Accesso negato</div>" ?>
+            <?php }
+        } ?>
     </main>
 
 
